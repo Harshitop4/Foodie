@@ -1,0 +1,354 @@
+[
+  {
+    "name": "Margherita Pizza",
+    "category": "Pizza",
+    "description": "Classic Margherita pizza with fresh mozzarella, tomatoes, and basil.",
+    "options": {
+      "half": 6.99,
+      "medium": 9.99,
+      "full": 12.99
+    },
+    "image": "images/margherita_pizza.jpg"
+  },
+  {
+    "name": "Pepperoni Pizza",
+    "category": "Pizza",
+    "description": "Delicious pizza topped with spicy pepperoni and mozzarella cheese.",
+    "options": {
+      "half": 7.49,
+      "medium": 10.99,
+      "full": 13.99
+    },
+    "image": "images/pepperoni_pizza.jpg"
+  },
+  {
+    "name": "BBQ Chicken Pizza",
+    "category": "Pizza",
+    "description": "Grilled chicken, BBQ sauce, and red onions on a cheesy crust.",
+    "options": {
+      "half": 8.49,
+      "medium": 11.99,
+      "full": 14.99
+    },
+    "image": "images/bbq_chicken_pizza.jpg"
+  },
+  {
+    "name": "Veggie Supreme Pizza",
+    "category": "Pizza",
+    "description": "Loaded with bell peppers, onions, olives, and mushrooms.",
+    "options": {
+      "half": 7.99,
+      "medium": 10.49,
+      "full": 13.49
+    },
+    "image": "images/veggie_supreme_pizza.jpg"
+  },
+  {
+    "name": "Cheeseburger",
+    "category": "Burgers",
+    "description": "Juicy beef burger topped with cheddar cheese, lettuce, and tomato.",
+    "options": {
+      "half": 5.49,
+      "medium": 7.49,
+      "full": 9.99
+    },
+    "image": "images/cheeseburger.jpg"
+  },
+  {
+    "name": "Bacon Burger",
+    "category": "Burgers",
+    "description": "A hearty burger with crispy bacon, lettuce, and a tangy sauce.",
+    "options": {
+      "half": 6.49,
+      "medium": 8.49,
+      "full": 10.99
+    },
+    "image": "images/bacon_burger.jpg"
+  },
+  {
+    "name": "Mushroom Swiss Burger",
+    "category": "Burgers",
+    "description": "Beef burger topped with sautéed mushrooms and Swiss cheese.",
+    "options": {
+      "half": 6.99,
+      "medium": 9.49,
+      "full": 11.49
+    },
+    "image": "images/mushroom_swiss_burger.jpg"
+  },
+  {
+    "name": "Veggie Burger",
+    "category": "Burgers",
+    "description": "A flavorful burger made with black beans, corn, and spices.",
+    "options": {
+      "half": 5.99,
+      "medium": 7.99,
+      "full": 10.49
+    },
+    "image": "images/veggie_burger.jpg"
+  },
+  {
+    "name": "Caesar Salad",
+    "category": "Salads",
+    "description": "Crisp romaine lettuce, parmesan cheese, croutons, and Caesar dressing.",
+    "options": {
+      "half": 4.99,
+      "medium": 6.99,
+      "full": 8.99
+    },
+    "image": "images/caesar_salad.jpg"
+  },
+  {
+    "name": "Greek Salad",
+    "category": "Salads",
+    "description": "Fresh tomatoes, cucumbers, olives, and feta cheese with olive oil.",
+    "options": {
+      "half": 5.49,
+      "medium": 7.49,
+      "full": 9.49
+    },
+    "image": "images/greek_salad.jpg"
+  },
+  {
+    "name": "Cobb Salad",
+    "category": "Salads",
+    "description": "Mixed greens topped with grilled chicken, avocado, and bacon.",
+    "options": {
+      "half": 6.99,
+      "medium": 9.49,
+      "full": 12.49
+    },
+    "image": "images/cobb_salad.jpg"
+  },
+  {
+    "name": "Caprese Salad",
+    "category": "Salads",
+    "description": "Fresh mozzarella, tomatoes, and basil drizzled with balsamic glaze.",
+    "options": {
+      "half": 5.99,
+      "medium": 8.49,
+      "full": 10.99
+    },
+    "image": "images/caprese_salad.jpg"
+  },
+  {
+    "name": "Spaghetti Carbonara",
+    "category": "Pasta",
+    "description": "Traditional Italian pasta with eggs, cheese, pancetta, and pepper.",
+    "options": {
+      "half": 7.49,
+      "medium": 10.99,
+      "full": 13.99
+    },
+    "image": "images/spaghetti_carbonara.jpg"
+  },
+  {
+    "name": "Fettuccine Alfredo",
+    "category": "Pasta",
+    "description": "Creamy fettuccine pasta tossed in a rich Alfredo sauce.",
+    "options": {
+      "half": 7.99,
+      "medium": 11.49,
+      "full": 14.99
+    },
+    "image": "images/fettuccine_alfredo.jpg"
+  },
+  {
+    "name": "Penne Arrabbiata",
+    "category": "Pasta",
+    "description": "Penne pasta in a spicy tomato sauce with garlic and chili flakes.",
+    "options": {
+      "half": 6.99,
+      "medium": 9.99,
+      "full": 12.99
+    },
+    "image": "images/penne_arrabbiata.jpg"
+  },
+  {
+    "name": "Lasagna",
+    "category": "Pasta",
+    "description": "Layered pasta with meat, cheese, and rich tomato sauce.",
+    "options": {
+      "half": 8.49,
+      "medium": 12.49,
+      "full": 15.49
+    },
+    "image": "images/lasagna.jpg"
+  },
+  {
+    "name": "Tandoori Chicken",
+    "category": "Indian",
+    "description": "Chicken marinated in yogurt and spices, grilled to perfection.",
+    "options": {
+      "half": 8.49,
+      "medium": 11.99,
+      "full": 15.99
+    },
+    "image": "images/tandoori_chicken.jpg"
+  },
+  {
+    "name": "Butter Chicken",
+    "category": "Indian",
+    "description": "Tender chicken in a creamy tomato sauce, served with rice.",
+    "options": {
+      "half": 9.49,
+      "medium": 13.49,
+      "full": 16.99
+    },
+    "image": "images/butter_chicken.jpg"
+  },
+  {
+    "name": "Palak Paneer",
+    "category": "Indian",
+    "description": "Cottage cheese cubes cooked in a spiced spinach gravy.",
+    "options": {
+      "half": 7.99,
+      "medium": 10.99,
+      "full": 14.99
+    },
+    "image": "images/palak_paneer.jpg"
+  },
+  {
+    "name": "Biryani",
+    "category": "Indian",
+    "description": "Fragrant basmati rice cooked with spiced meat and vegetables.",
+    "options": {
+      "half": 8.99,
+      "medium": 12.49,
+      "full": 15.49
+    },
+    "image": "images/biryani.jpg"
+  },
+  {
+    "name": "Sushi Platter",
+    "category": "Japanese",
+    "description": "An assortment of sushi rolls, including tuna, salmon, and avocado.",
+    "options": {
+      "half": 10.99,
+      "medium": 14.99,
+      "full": 19.99
+    },
+    "image": "images/sushi_platter.jpg"
+  },
+  {
+    "name": "Tempura Udon",
+    "category": "Japanese",
+    "description": "Thick udon noodles in broth, topped with crispy tempura vegetables.",
+    "options": {
+      "half": 9.49,
+      "medium": 12.99,
+      "full": 15.99
+    },
+    "image": "images/tempura_udon.jpg"
+  },
+  {
+    "name": "Ramen",
+    "category": "Japanese",
+    "description": "Delicious ramen noodles served in a rich, savory broth.",
+    "options": {
+      "half": 8.99,
+      "medium": 12.49,
+      "full": 14.99
+    },
+    "image": "images/ramen.jpg"
+  },
+  {
+    "name": "Teriyaki Chicken",
+    "category": "Japanese",
+    "description": "Grilled chicken glazed with a sweet teriyaki sauce, served with rice.",
+    "options": {
+      "half": 9.99,
+      "medium": 13.49,
+      "full": 16.99
+    },
+    "image": "images/teriyaki_chicken.jpg"
+  },
+  {
+    "name": "Chocolate Lava Cake",
+    "category": "Dessert",
+    "description": "Rich chocolate cake with a molten chocolate center, served with ice cream.",
+    "options": {
+      "half": 4.99,
+      "medium": 6.99,
+      "full": 8.49
+    },
+    "image": "images/chocolate_lava_cake.jpg"
+  },
+  {
+    "name": "Tiramisu",
+    "category": "Dessert",
+    "description": "Classic Italian dessert made with coffee-soaked ladyfingers and mascarpone cheese.",
+    "options": {
+      "half": 5.49,
+      "medium": 7.49,
+      "full": 9.49
+    },
+    "image": "images/tiramisu.jpg"
+  },
+  {
+    "name": "Cheesecake",
+    "category": "Dessert",
+    "description": "Creamy cheesecake with a graham cracker crust, topped with fruit.",
+    "options": {
+      "half": 5.99,
+      "medium": 8.49,
+      "full": 10.99
+    },
+    "image": "images/cheesecake.jpg"
+  },
+  {
+    "name": "Fruit Tart",
+    "category": "Dessert",
+    "description": "Delicious tart filled with pastry cream and topped with fresh fruit.",
+    "options": {
+      "half": 4.99,
+      "medium": 6.99,
+      "full": 8.99
+    },
+    "image": "images/fruit_tart.jpg"
+  },
+  {
+    "name": "Fish Tacos",
+    "category": "Mexican",
+    "description": "Grilled fish served in corn tortillas with cabbage slaw and chipotle sauce.",
+    "options": {
+      "half": 5.99,
+      "medium": 8.49,
+      "full": 10.99
+    },
+    "image": "images/fish_tacos.jpg"
+  },
+  {
+    "name": "Chicken Enchiladas",
+    "category": "Mexican",
+    "description": "Corn tortillas filled with shredded chicken and topped with enchilada sauce.",
+    "options": {
+      "half": 6.49,
+      "medium": 9.49,
+      "full": 12.49
+    },
+    "image": "images/chicken_enchiladas.jpg"
+  },
+  {
+    "name": "Beef Burrito",
+    "category": "Mexican",
+    "description": "Large burrito filled with seasoned beef, beans, and rice.",
+    "options": {
+      "half": 7.49,
+      "medium": 10.99,
+      "full": 13.99
+    },
+    "image": "images/beef_burrito.jpg"
+  },
+  {
+    "name": "Guacamole and Chips",
+    "category": "Mexican",
+    "description": "Fresh guacamole served with crispy tortilla chips.",
+    "options": {
+      "half": 4.99,
+      "medium": 6.99,
+      "full": 8.99
+    },
+    "image": "images/guacamole_and_chips.jpg"
+  }
+]
