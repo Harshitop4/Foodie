@@ -30,7 +30,6 @@ export default function Card(props) {
                 const errmsg = await res.text();
                 throw new Error(errmsg);
             }
-            const data = await res.json();
             setTotalItems(totalItems+qt);
         } catch (err) {
             alert(err);

@@ -11,7 +11,7 @@ export default function Home() {
   const [searchVar, setSearchVar] = useState("")
   const [selectedCat, setSelectedCat] = useState(-1)
   const [foodsList, setfoodsList] = useState([])
-  const [totalItems, setTotalItems] = useState(-1)
+  const [totalItems, setTotalItems] = useState(0)
   const [token, setToken] = useState(localStorage.getItem('authToken'))
 
   const navigate = useNavigate();
