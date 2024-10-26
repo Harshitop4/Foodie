@@ -34,7 +34,7 @@ export default function Navbar() {
                         <div className="btn btn-danger me-3" onClick={handleLogout}>
                             Logout
                         </div>
-                            <div className="btn btn-success me-3" onClick={()=>navigate('/cart')}>
+                            <div className="btn btn-success me-3" onClick={()=>navigate('/profile')}>
                                 My Profile
                             </div></>
                             :

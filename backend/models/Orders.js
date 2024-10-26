@@ -24,6 +24,10 @@ const OrderSchema=new Schema({
         type:String,
         required:true
     },
+    orderedAt: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 const Order=mongoose.model('Order',OrderSchema);

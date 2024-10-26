@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import { useNavigate } from 'react-router-dom'
+import './Cart.css'
 
 export default function Cart() {
   const [token, setToken] = useState(localStorage.getItem('authToken'))
@@ -80,33 +81,52 @@ export default function Cart() {
   return (
     <div>
       <Navbar />
-      <div className="container mt-4" style={{maxWidth:"50rem"}}>
-        {loading ?
-          <h1>Loading...</h1>
-          : <>
-            <h2>Your Cart</h2>
-            {cartItems.length === 0 ? (<div>
-              <p>Your cart is empty.</p>
-              <button className='btn btn-warning' onClick={() => navigate('/')}>Go To Shopping</button></div>
+      <div className="container mt-4" style={{ maxWidth: "50rem" }}>
+        {loading ? (
+          <h1 className="text-center">Loading...</h1>
+        ) : (
+          <>
+            <h2 className="text-center mb-4">Your Cart</h2>
+            {cartItems.length === 0 ? (
+              <div className="text-center">
+                <p>Your cart is empty.</p>
+                <button className='btn btn-warning' onClick={() => navigate('/')}>Go To Shopping</button>
+              </div>
             ) : (
               <div className='mb-4'>
                 {cartItems.map((item, ind) => (
-                  <div key={ind} className="card mb-3">
-                    <div className="card-body">
-                      <h5 className="card-title">{item.name}</h5>
-                      <p className="card-text">Quantity: {item.qt}</p>
-                      <p className="card-text">Price: Rs.{item.price}</p>
-                      <button className='btn btn-danger' onClick={() => handleRemoveItem(item.id)}>Remove</button>
+                  <div key={ind} className="card mb-3 shadow-sm cart-card">
+                    <div className='d-flex align-items-center'>
+                      <div className="p-2">
+                        <img
+                          src="/images/pizza.jpg"
+                          className="img-fluid rounded"
+                          alt={item.name}
+                          style={{ width: "8rem", height: "6rem", marginLeft: "1.5rem", marginRight: "5rem" }}
+                        />
+                      </div>
+                      <div className="card-body ms-2">
+                        <h5 className="card-title mb-1" style={{ fontSize: "1.2rem" }}>{item.name}</h5>
+                        <p className="card-text mb-1">Quantity: {item.qt}</p>
+                        <p className="card-text mb-2">Price: Rs.{item.price}</p>
+                      </div>
+                      <div style={{marginRight:"3rem"}}>
+                        <button className='btn btn-danger' onClick={() => handleRemoveItem(item.id)}>
+                          <i className="bi bi-trash"></i> Remove
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
-                <h4>Total Amount: Rs. {totalPrice}</h4>
-                <button className="btn btn-primary mt-3" onClick={() => navigate('./checkout')}>Checkout</button>
-                <button className="btn btn-danger mt-3 ms-4" onClick={handleClearCart}>Clear Cart</button>
+                <h4 >Total Amount: <span style={{backgroundColor:"#43ff49"}}>Rs. {totalPrice}</span></h4>
+                <div className="d-flex justify-content-between mt-3">
+                  <button className="btn btn-primary" onClick={() => navigate('./checkout')}>Checkout</button>
+                  <button className="btn btn-danger" onClick={handleClearCart}>Clear Cart</button>
+                </div>
               </div>
             )}
           </>
-        }
+        )}
       </div>
     </div>
   )

@@ -6,6 +6,8 @@ export default function Card(props) {
     const [qt, setQt] = useState(1);
     const [size, setSize] = useState(0);
     const [total, setTotal] = useState(0);
+    const [token, setToken] = useState(localStorage.getItem('authToken'))
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -13,6 +15,10 @@ export default function Card(props) {
     }, [qt, size]);
 
     const handleAddCart = async () => {
+        if(!token){
+            navigate('/login')
+            return;
+        }
         if(total===0){
             alert('Please Select Valid Size')
             return;
@@ -22,10 +28,11 @@ export default function Card(props) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('authToken'),
+                    'Authorization': token,
                 },
                 body: JSON.stringify({ ind, qt, price: size }),
             });
+            console.log(totalItems," ",qt)
             if (!res.ok) {
                 const errmsg = await res.text();
                 throw new Error(errmsg);
@@ -33,7 +40,6 @@ export default function Card(props) {
             setTotalItems(totalItems+qt);
         } catch (err) {
             alert(err);
-            console.log(err);
         }
     };
 
@@ -59,7 +65,7 @@ export default function Card(props) {
                     </div>
                     <p style={{ fontWeight: "bold", color: "#5a2d82" }}>Total Price: Rs. {total}</p>
                     <button className="btn btn-success w-100" onClick={handleAddCart} style={{ backgroundColor: "#4CAF50", borderRadius: "0.5rem", fontWeight: "bold", color: "white" }}>
-                        Add to Cart {ind}
+                        Add to Cart 
                     <img src="/images/cart.png" alt="Cart Icon" style={{ width: "1rem", marginLeft: "0.5rem" }} />
                     </button>
                 </div>
