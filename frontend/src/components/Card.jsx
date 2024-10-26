@@ -18,7 +18,7 @@ export default function Card(props) {
             return;
         }
         try {
-            const res = await fetch('/api/cart', {
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/cart`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
