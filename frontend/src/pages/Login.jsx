@@ -31,7 +31,7 @@ export default function Login() {
         throw new Error(errmsg);
       }
       const data=await response.json();
-      console.log(data);
+      console.log("Logged in Successfully");
       localStorage.setItem("authToken",data.authToken)
       navigate('/')
     } catch (error) {

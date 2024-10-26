@@ -36,7 +36,7 @@ export default function Home() {
       return;
     }
     try {
-      const response = await fetch('${process.env.REACT_APP_API_URL}/api/cart/totalItems', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/cart/totalItems`, {
         method: 'GET',
         headers: {
           'Authorization': token,
