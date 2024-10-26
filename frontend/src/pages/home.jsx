@@ -71,7 +71,7 @@ export default function Home() {
   }
 
   const toggle = (ind) => {
-    if (selectedCat == ind) {
+    if (selectedCat === ind) {
       return -1;
     }
     return ind;
@@ -121,7 +121,7 @@ export default function Home() {
                   <div className='d-flex justify-content-centre flex-wrap'>
                     {foods.map((food, key) => {
                       if (food.category === cat.category && food.name.toLowerCase().includes(searchVar.toLowerCase())) {
-                        return <div key={key}>
+                        return <div key={key}>{key}
                           <Card ind={key} title={food.name} category={food.category} description={food.description} options={food.options} totalItems={totalItems} setTotalItems={setTotalItems} />
                         </div>
                       }

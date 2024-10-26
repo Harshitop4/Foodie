@@ -59,7 +59,7 @@ export default function Card(props) {
                     </div>
                     <p style={{ fontWeight: "bold", color: "#5a2d82" }}>Total Price: Rs. {total}</p>
                     <button className="btn btn-success w-100" onClick={handleAddCart} style={{ backgroundColor: "#4CAF50", borderRadius: "0.5rem", fontWeight: "bold", color: "white" }}>
-                        Add to Cart
+                        Add to Cart {ind}
                     <img src="/images/cart.png" alt="Cart Icon" style={{ width: "1rem", marginLeft: "0.5rem" }} />
                     </button>
                 </div>
