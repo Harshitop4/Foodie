@@ -90,6 +90,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <div> {process.env.REACT_APP_API_URL}</div>
       <div style={{ padding: "0 2rem" }}>
         <div>
           <div className="d-flex w-50 m-auto mt-4" role="search" >
