@@ -13,7 +13,7 @@ export default function Cart() {
   const handleCart = async () => {
     setLoading(true)
     try {
-      const res = await fetch('http://localhost:5000/api/cart', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/cart`, {
         method: 'GET',
         headers: {
           'Authorization': token,
@@ -34,7 +34,7 @@ export default function Cart() {
 
   const handleClearCart = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/cart', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/cart`, {
         method: 'DELETE',
         headers: {
           'Authorization': token,
@@ -52,7 +52,7 @@ export default function Cart() {
 
   const handleRemoveItem = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/cart/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/cart/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': token,

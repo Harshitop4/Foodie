@@ -18,7 +18,7 @@ export default function Home() {
 
   const getFoods = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/foods')
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/foods`)
       if (!response.ok) {
         const errmsg = await response.text();
         throw new Error(errmsg);
@@ -36,7 +36,7 @@ export default function Home() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/cart/totalItems', {
+      const response = await fetch('${process.env.REACT_APP_API_URL}/api/cart/totalItems', {
         method: 'GET',
         headers: {
           'Authorization': token,
