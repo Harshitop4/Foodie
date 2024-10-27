@@ -15,7 +15,7 @@ const PORT=5000;
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb+srv://harshitop4:vMEZWaS4XjD4ZmoG@cluster0.1nr7a.mongodb.net/foodie_db?retryWrites=true&w=majority&appName=Cluster0');
+        await mongoose.connect(process.env.MONGO_URI);
         console.log('MongoDB Connected Successfully');
         
         const foodList = await mongoose.connection.db.collection('foods');

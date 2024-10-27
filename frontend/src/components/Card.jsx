@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {toast} from "react-toastify"
+import { useGlobal } from '../pages/GlobalContext';
 
 export default function Card(props) {
-    const { ind, title,img, category, description, options: { half, medium, full },totalItems,setTotalItems } = props;
+    const { ind, title,img, category, description, options: { half, medium, full }} = props;
     const [qt, setQt] = useState(1);
     const [size, setSize] = useState(0);
     const [total, setTotal] = useState(0);
     const [token, setToken] = useState(localStorage.getItem('authToken'))
+    const {noCartItems,setNoCartItems}=useGlobal();
 
     const navigate = useNavigate();
 
@@ -34,12 +36,11 @@ export default function Card(props) {
                 },
                 body: JSON.stringify({ ind, qt, price: size }),
             });
-            console.log(totalItems," ",qt)
             if (!res.ok) {
                 const errmsg = await res.text();
                 throw new Error(errmsg);
             }
-            setTotalItems(totalItems+qt);
+            setNoCartItems(noCartItems+qt);
             toast.success("Item Added To The Cart")
         } catch (err) {
             // alert(err);

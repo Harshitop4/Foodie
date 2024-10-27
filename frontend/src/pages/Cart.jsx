@@ -3,12 +3,14 @@ import Navbar from '../components/Navbar'
 import { useNavigate } from 'react-router-dom'
 import './Cart.css'
 import { toast } from 'react-toastify'
+import { useGlobal } from './GlobalContext'
 
 export default function Cart() {
   const [token, setToken] = useState(localStorage.getItem('authToken'))
   const [cartItems, setCartItems] = useState([])
   const [totalPrice, setTotalPrice] = useState(0)
   const [loading, setLoading] = useState(false)
+  const {noCartItems,setNoCartItems}=useGlobal();
 
   const navigate = useNavigate();
 
@@ -50,6 +52,7 @@ export default function Cart() {
       }
       handleCart();
       toast.success("Cart Cleared")
+      setNoCartItems(0)
     } catch (err) {
       // alert(err);
       // toast.error(err)
@@ -57,7 +60,7 @@ export default function Cart() {
     }
   }
 
-  const handleRemoveItem = async (id) => {
+  const handleRemoveItem = async (id,qt) => {
     try {
       const res = await fetch(`${process.env.REACT_APP_API_URL}/api/cart/${id}`, {
         method: 'DELETE',
@@ -71,6 +74,7 @@ export default function Cart() {
       }
       handleCart();
       toast.success("Item Removed")
+      setNoCartItems(noCartItems-qt)
     } catch (err) {
       // alert(err);
       // toast.error(err)
@@ -120,7 +124,7 @@ export default function Cart() {
                         <p className="card-text mb-2">Price: Rs.{item.price}</p>
                       </div>
                       <div style={{marginRight:"3rem"}}>
-                        <button className='btn btn-danger' onClick={() => handleRemoveItem(item.id)}>
+                        <button className='btn btn-danger' onClick={() => handleRemoveItem(item.id,item.qt)}>
                           <i className="bi bi-trash"></i> Remove
                         </button>
                       </div>

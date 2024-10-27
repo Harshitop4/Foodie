@@ -36,7 +36,15 @@ router.post('/',async (req,res)=>{
         }
         const newUser=new User(data);
         await newUser.save();
-        res.send(newUser);
+
+        const userdata={
+            user:{
+                id:newUser._id
+            }
+        }
+        const authToken =jwt.sign(userdata,jwtSecret);
+        res.send({newUser,authToken});
+
     } catch (err) {
         res.status(400).send(err);
     }

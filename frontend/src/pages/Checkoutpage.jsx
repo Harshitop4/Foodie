@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useGlobal } from './GlobalContext';
 
 export default function CheckoutPage() {
   
+  const {noCartItems,setNoCartItems}=useGlobal();
   const [cartItems, setCartItems] = useState([])
   const [token, setToken] = useState(localStorage.getItem('authToken'))
   const [loading, setLoading] = useState(false)
@@ -61,13 +63,14 @@ export default function CheckoutPage() {
       toast.success("Order Placed Successfully")
       setLoading(false)
       navigate('/')
+      setNoCartItems(0)
+      console.log(noCartItems)
 
     } catch (err) {
       // alert(err);
       // toast.error(err)
       toast.error(err.message || "An error occurred");
     }
-    
   }
 
   const handleCancel=()=>{

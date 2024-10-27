@@ -4,15 +4,16 @@ import Footer from '../components/Footer'
 import Card from '../components/Card'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useGlobal } from './GlobalContext'
 
 export default function Home() {
 
+  const {noCartItems,setNoCartItems}=useGlobal();
   const [foods, setFoods] = useState([])
   const [categories, setCategories] = useState([])
   const [searchVar, setSearchVar] = useState("")
   const [selectedCat, setSelectedCat] = useState(-1)
   const [foodsList, setfoodsList] = useState([])
-  const [totalItems, setTotalItems] = useState(0)
   const [token, setToken] = useState(localStorage.getItem('authToken'))
 
   const navigate = useNavigate();
@@ -50,7 +51,8 @@ export default function Home() {
         throw new Error(errmsg);
       }
       const data = await response.json();
-      setTotalItems(data.totalItems)
+      // console.log(data.totalItems)
+      setNoCartItems(data.totalItems)
     } catch (err) {
       // alert(error);
       // toast.error(error)
@@ -128,7 +130,7 @@ export default function Home() {
                     {foods.map((food, key) => {
                       if (food.category === cat.category && food.name.toLowerCase().includes(searchVar.toLowerCase())) {
                         return <div key={key}>
-                          <Card ind={key} title={food.name} img={food.image} category={food.category} description={food.description} options={food.options} totalItems={totalItems} setTotalItems={setTotalItems} />
+                          <Card ind={key} title={food.name} img={food.image} category={food.category} description={food.description} options={food.options} />
                         </div>
                       }
                     })}
@@ -145,7 +147,7 @@ export default function Home() {
           <div style={{
             position: "absolute", top: "0", right: "0", backgroundColor: "red", color: "white", borderRadius: "50%", width: "1.5rem", height: "1.5rem", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "0.8rem", fontWeight: "bold", transform: "translate(25%, -25%)"
           }}>
-            {totalItems}
+            {noCartItems}
           </div>
         </button>
         :""

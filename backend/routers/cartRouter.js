@@ -154,11 +154,15 @@ router.post('/checkout', verifyToken, async (req, res) => {
         }
         const order=new Order({userId:userid,totalItems:cart.totalItems,totalPrice:cart.totalPrice,deliveryAddress:deliveryAdd,MobileNumber:mobno})
         await order.save();
-        const cartItems = await CartItem.find({ cartId: cart._id })
-        cartItems.forEach(async(item)=>{    
-            const temp=new OrderItem({orderId:order._id,foodId:item.foodId,qt:item.qt,price:item.price})
-            await temp.save();
-        })
+        let cartItems = await CartItem.find({ cartId: cart._id })
+        cartItems=cartItems.reverse()
+        await Promise.all(cartItems.map(async (item) => {
+            const temp = new OrderItem({ orderId: order._id, foodId: item.foodId, qt: item.qt, price: item.price });
+            return temp.save();
+        }));
+        await CartItem.deleteMany({ cartId: cart._id })
+        await Cart.updateOne({_id:cart._id},{totalItems:0,totalPrice:0})
+        
         res.send(order);
     } catch (error) {
         res.status(400).send(error);

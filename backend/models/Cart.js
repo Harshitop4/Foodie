@@ -27,6 +27,8 @@ CartSchema.pre('save', function (next) {
 CartSchema.pre('remove',async function(next){
     try {
         await CartItem.deleteMany({cartId:this._id})
+        this.totalItems=0;
+        this.totalPrice=0;
         next();
     } catch (error) {
         next(error)

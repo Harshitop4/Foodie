@@ -33,7 +33,7 @@ export default function SignUp() {
         throw new Error(errmsg);
       }
       const data=await response.json();
-      // console.log(data);
+      localStorage.setItem('authToken',data.authToken)
       toast.success("Signed Up Successfully")
       navigate('/')
     } catch (err) {
