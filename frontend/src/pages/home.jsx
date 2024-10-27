@@ -10,6 +10,7 @@ export default function Home() {
 
   const {noCartItems,setNoCartItems}=useGlobal();
   const [foods, setFoods] = useState([])
+  const [loading, setLoading] = useState(true)
   const [categories, setCategories] = useState([])
   const [searchVar, setSearchVar] = useState("")
   const [selectedCat, setSelectedCat] = useState(-1)
@@ -20,6 +21,7 @@ export default function Home() {
 
   const getFoods = async () => {
     try {
+      setLoading(true)
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/foods`)
       if (!response.ok) {
         const errmsg = await response.text();
@@ -28,11 +30,13 @@ export default function Home() {
       const data = await response.json();
       setFoods(data.foods);
       setCategories(data.categories);
+      setLoading(false)
     } catch (err) {
       // alert(error);
       // toast.error(error)
       toast.error(err.message || "An error occurred");
     }
+    
   }
 
   const getTotalItems = async () => {
@@ -105,41 +109,44 @@ export default function Home() {
           </div>
         </div>
         <hr />
-        <div className='container d-flex justify-content-center'>
-          {categories.map((cat, ind) => {
-            return <button onClick={() => setSelectedCat(toggle(ind))} className='mx-2' style={{
-              border: `2px solid ${(selectedCat === ind) ? "blue" : "red"}`, width: "10rem", height: "3rem",
-              
-              backgroundColor: (selectedCat === ind) ? "#352bd1" : "rgb(255 208 67)", borderRadius: "50px", fontStyle: "italic",boxShadow:"0px 8px 15px rgba(0, 0, 0, 0.3)"
-            }}>
-              <h2 style={{ fontSize: "2rem",color: (selectedCat === ind) ? "rgb(255 208 67)" : "black", }}>{cat.category}</h2>
-            </button>
-          })}
-        </div>
-        <div>
-          <div >
-            {
-              categories.map((cat, ind) => {
-                if (foodsList[ind] === 0) {
-                  return ""
-                }
-                return <div key={ind} id={ind} style={{ border: "2px solid black", borderRadius: '8px', marginTop: "20px" }}>
-                  <div className='mt-3 mb-3 fs-3' style={{ fontWeight: "bold", marginLeft: "2%" }}>{cat.category}</div>
-                  <hr />
-                  <div className='d-flex justify-content-centre flex-wrap'>
-                    {foods.map((food, key) => {
-                      if (food.category === cat.category && food.name.toLowerCase().includes(searchVar.toLowerCase())) {
-                        return <div key={key}>
-                          <Card ind={key} title={food.name} img={food.image} category={food.category} description={food.description} options={food.options} />
-                        </div>
-                      }
-                    })}
-                  </div>
-                </div>
-              })
-            }
+        { loading ? <div className='d-flex justify-content-center align-items-center fs-1' style={{height:"50vh"}}>Loading...</div> 
+          : <>
+          <div className='container d-flex justify-content-center'>
+            {categories.map((cat, ind) => {
+              return <button onClick={() => setSelectedCat(toggle(ind))} className='mx-2' style={{
+                border: `2px solid ${(selectedCat === ind) ? "blue" : "red"}`, width: "10rem", height: "3rem",
+                
+                backgroundColor: (selectedCat === ind) ? "#352bd1" : "rgb(255 208 67)", borderRadius: "50px", fontStyle: "italic",boxShadow:"0px 8px 15px rgba(0, 0, 0, 0.3)"
+              }}>
+                <h2 style={{ fontSize: "2rem",color: (selectedCat === ind) ? "rgb(255 208 67)" : "black", }}>{cat.category}</h2>
+              </button>
+            })}
           </div>
-        </div>
+          <div>
+            <div >
+              {
+                categories.map((cat, ind) => {
+                  if (foodsList[ind] === 0) {
+                    return ""
+                  }
+                  return <div key={ind} id={ind} style={{ border: "2px solid black", borderRadius: '8px', marginTop: "20px" }}>
+                    <div className='mt-3 mb-3 fs-3' style={{ fontWeight: "bold", marginLeft: "2%" }}>{cat.category}</div>
+                    <hr />
+                    <div className='d-flex justify-content-centre flex-wrap'>
+                      {foods.map((food, key) => {
+                        if (food.category === cat.category && food.name.toLowerCase().includes(searchVar.toLowerCase())) {
+                          return <div key={key}>
+                            <Card ind={key} title={food.name} img={food.image} category={food.category} description={food.description} options={food.options} />
+                          </div>
+                        }
+                      })}
+                    </div>
+                  </div>
+                })
+              }
+            </div>
+          </div></>
+          }
       </div>
       { token?
         <button onClick={() => navigate('/cart')} style={{ width: "6rem", height: "5rem", position: "sticky", bottom: "7vh", left: "87vw", border: '2px solid red', backgroundColor: "#c1c1ff", borderRadius: "50%", display: "flex", justifyContent: "center", alignItems: "center",boxShadow: "-4px 4px 8px rgba(0, 0, 0, 0.2)" }}>

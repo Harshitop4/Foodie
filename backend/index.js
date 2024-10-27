@@ -8,7 +8,10 @@ const Cart=require('./models/Cart')
 const CartItem=require('./models/CartItem')
 const Food=require('./models/Food')
 const cors=require('cors');
-const jwt=require('jsonwebtoken')
+const jwt=require('jsonwebtoken');
+const OrderItem = require('./models/OrderItem');
+const Order = require('./models/Orders');
+const User = require('./models/User');
 
 const app=express();
 const PORT=5000;
