@@ -19,6 +19,11 @@ const CartSchema=new Schema({
     }
 })
 
+CartSchema.pre('save', function (next) {
+    this.totalPrice = parseFloat(this.totalPrice.toFixed(2));
+    next();
+  });
+
 CartSchema.pre('remove',async function(next){
     try {
         await CartItem.deleteMany({cartId:this._id})

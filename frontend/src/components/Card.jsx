@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {toast} from "react-toastify"
 
 export default function Card(props) {
-    const { ind, title, category, description, options: { half, medium, full },totalItems,setTotalItems } = props;
+    const { ind, title,img, category, description, options: { half, medium, full },totalItems,setTotalItems } = props;
     const [qt, setQt] = useState(1);
     const [size, setSize] = useState(0);
     const [total, setTotal] = useState(0);
@@ -20,7 +21,8 @@ export default function Card(props) {
             return;
         }
         if(total===0){
-            alert('Please Select Valid Size')
+            // alert('Please Select Valid Size')
+            toast.warning('Please Select Valid Size')
             return;
         }
         try {
@@ -38,15 +40,18 @@ export default function Card(props) {
                 throw new Error(errmsg);
             }
             setTotalItems(totalItems+qt);
+            toast.success("Item Added To The Cart")
         } catch (err) {
-            alert(err);
+            // alert(err);
+            // toast.error(err)
+            toast.error(err.message || "An error occurred");
         }
     };
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div className="card m-4" style={{ width: "18rem", borderRadius: "1rem", boxShadow: "0px 4px 12px rgba(0,0,0,0.1)", backgroundColor: "#fffaf0" }}>
-                <img src="/images/pizza.jpg" className="card-img-top" alt="Food Item" style={{ borderTopLeftRadius: "1rem", borderTopRightRadius: "1rem", height: "12rem", objectFit: "cover" }} />
+                <img src={img} className="card-img-top" alt="Food Item" style={{ borderTopLeftRadius: "1rem", borderTopRightRadius: "1rem", height: "12rem", objectFit: "cover" }} />
                 <div className="card-body" style={{ padding: "1.5rem" }}>
                     <h5 className="card-title" style={{ fontWeight: "bold", color: "#5a2d82" }}>{title}</h5>
                     <p className="card-text" style={{color: "black",overflow: "hidden",textOverflow: "ellipsis",display: "-webkit-box",WebkitLineClamp: 2,WebkitBoxOrient: "vertical",maxHeight: "3rem"}}>{description}</p>

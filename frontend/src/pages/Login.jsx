@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import { Link,useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 
 export default function Login() {
@@ -31,11 +32,14 @@ export default function Login() {
         throw new Error(errmsg);
       }
       const data=await response.json();
-      console.log("Logged in Successfully");
+      toast.success("Logged in Successfully");
       localStorage.setItem("authToken",data.authToken)
       navigate('/')
-    } catch (error) {
-      alert(error);
+    } catch (err) {
+      // alert(err);
+      console.log(err)
+      // toast.error(err.message)
+      toast.error(err.message || "An error occurred");
     }
   }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function CheckoutPage() {
   
@@ -33,7 +34,9 @@ export default function CheckoutPage() {
       setLoading(false)
 
     } catch (err) {
-      alert(err);
+      // alert(err);
+      // toast.error(err)
+      toast.error(err.message || "An error occurred");
     }
   }
 
@@ -54,15 +57,26 @@ export default function CheckoutPage() {
         throw new Error(errmsg);
       }
       const data = await res.json();
-      alert("Order Placed Successfully")
+      // alert("Order Placed Successfully")
+      toast.success("Order Placed Successfully")
       setLoading(false)
       navigate('/')
 
     } catch (err) {
-      alert(err);
-      console.log(err);
+      // alert(err);
+      // toast.error(err)
+      toast.error(err.message || "An error occurred");
     }
     
+  }
+
+  const handleCancel=()=>{
+    const isCancel=window.confirm("Are you sure to cancel?")
+    if(!isCancel){
+      return;
+    }
+    toast.warning("Payment Canceled")
+    navigate('/')
   }
 
   useEffect(()=>{
@@ -71,7 +85,7 @@ export default function CheckoutPage() {
 
   useEffect(()=>{
     const total = cartItems.reduce((acc, item) => acc + (item.price * item.qt), 0);
-    setTotalPrice(total);
+    setTotalPrice(parseFloat(total.toFixed(2)));
   },[cartItems])
 
   return (
@@ -80,26 +94,30 @@ export default function CheckoutPage() {
       <hr />
       {/* Order Summary */}
       <div style={{ borderBottom: "0.1rem solid #ddd", paddingBottom: "2rem", marginBottom: "2rem" }}>
-        <h3>Order Summary/-</h3>
-        <h4 style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
-            <span>Name</span>
-            <span>Price</span>
-            <span>Total</span>
-          </h4>
-        {cartItems.map(item => (
-          <>
-          <div key={item.id} style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
-            <span style={{width:"6rem"}}>{item.name}</span>
-            <span>Rs. {item.price} x {item.qt}</span>
-            <span>Rs. {item.price * item.qt}</span>
+        {loading ? <h1 className='d-flex justify-content-center'>Loading..</h1>
+          : <>
+          <h3>Order Summary/-</h3>
+          <h4 style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
+              <span>Name</span>
+              <span>Price</span>
+              <span>Total</span>
+            </h4>
+          {cartItems.map(item => (
+            <>
+            <div key={item.id} style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
+              <span style={{width:"6rem"}}>{item.name}</span>
+              <span>Rs. {item.price} x {item.qt}</span>
+              <span>Rs. {item.price * item.qt}</span>
+            </div>
+              <hr />
+              </>
+          ))}
+          <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold" }}>
+            <span>Total:</span>
+            <span>Rs. {totalPrice}</span>
           </div>
-            <hr />
-            </>
-        ))}
-        <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold" }}>
-          <span>Total:</span>
-          <span>Rs. {totalPrice}</span>
-        </div>
+          </>
+        }
       </div>
 
       {/* Payment Form */}
@@ -120,6 +138,9 @@ export default function CheckoutPage() {
           </div>
           <button type="submit" style={{ width: "100%", padding: "0.75rem", backgroundColor: "#4CAF50", color: "white", border: "none", borderRadius: "0.25rem", fontSize: "1rem", cursor: "pointer" }}>
             Pay Rs. {totalPrice}
+          </button>
+          <button onClick={handleCancel} className='mt-2' style={{ width: "100%", padding: "0.75rem", backgroundColor: "red", color: "white", border: "none", borderRadius: "0.25rem", fontSize: "1rem", cursor: "pointer" }}>
+            Cancel
           </button>
         </form>
       </div>

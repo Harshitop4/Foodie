@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import { Link ,useNavigate} from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 export default function SignUp() {
 
@@ -32,10 +33,13 @@ export default function SignUp() {
         throw new Error(errmsg);
       }
       const data=await response.json();
-      console.log(data);
+      // console.log(data);
+      toast.success("Signed Up Successfully")
       navigate('/')
-    } catch (error) {
-      alert(error);
+    } catch (err) {
+      // alert(error);
+      // toast.error(error)
+      toast.error(err.message || "An error occurred");
     }
   }
 

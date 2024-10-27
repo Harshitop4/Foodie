@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 export default function Navbar() {
 
@@ -14,6 +15,7 @@ export default function Navbar() {
     const handleLogout=()=>{
         localStorage.removeItem('authToken');
         setToken("");
+        toast.success("Logout Successfully")
         navigate('/login')
     }
 

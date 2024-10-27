@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Card from '../components/Card'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export default function Home() {
 
@@ -26,8 +27,10 @@ export default function Home() {
       const data = await response.json();
       setFoods(data.foods);
       setCategories(data.categories);
-    } catch (error) {
-      alert(error);
+    } catch (err) {
+      // alert(error);
+      // toast.error(error)
+      toast.error(err.message || "An error occurred");
     }
   }
 
@@ -48,8 +51,10 @@ export default function Home() {
       }
       const data = await response.json();
       setTotalItems(data.totalItems)
-    } catch (error) {
-      alert(error);
+    } catch (err) {
+      // alert(error);
+      // toast.error(error)
+      toast.error(err.message || "An error occurred");
     }
   }
 
@@ -102,9 +107,10 @@ export default function Home() {
           {categories.map((cat, ind) => {
             return <button onClick={() => setSelectedCat(toggle(ind))} className='mx-2' style={{
               border: `2px solid ${(selectedCat === ind) ? "blue" : "red"}`, width: "10rem", height: "3rem",
-              backgroundColor: (selectedCat === ind) ? "#ff4141" : "rgb(255 208 67)", borderRadius: "50px", fontStyle: "italic"
+              
+              backgroundColor: (selectedCat === ind) ? "#352bd1" : "rgb(255 208 67)", borderRadius: "50px", fontStyle: "italic",boxShadow:"0px 8px 15px rgba(0, 0, 0, 0.3)"
             }}>
-              <h2 style={{ color: "black", fontSize: "2rem" }}>{cat.category}</h2>
+              <h2 style={{ fontSize: "2rem",color: (selectedCat === ind) ? "rgb(255 208 67)" : "black", }}>{cat.category}</h2>
             </button>
           })}
         </div>
@@ -122,7 +128,7 @@ export default function Home() {
                     {foods.map((food, key) => {
                       if (food.category === cat.category && food.name.toLowerCase().includes(searchVar.toLowerCase())) {
                         return <div key={key}>
-                          <Card ind={key} title={food.name} category={food.category} description={food.description} options={food.options} totalItems={totalItems} setTotalItems={setTotalItems} />
+                          <Card ind={key} title={food.name} img={food.image} category={food.category} description={food.description} options={food.options} totalItems={totalItems} setTotalItems={setTotalItems} />
                         </div>
                       }
                     })}

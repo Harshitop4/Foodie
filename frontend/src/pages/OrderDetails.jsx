@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { toast } from 'react-toastify';
 
 export default function OrderDetails() {
 
@@ -25,8 +26,10 @@ export default function OrderDetails() {
             const data = await response.json();
             setOrders(data)
 
-        } catch (error) {
-            alert(error);
+        } catch (err) {
+            // alert(error);
+            // toast.error(error)
+            toast.error(err.message || "An error occurred");
         } finally {
             setLoading(false);
         }
@@ -46,9 +49,8 @@ export default function OrderDetails() {
                 {orders && orders.length > 0 ? (
                     orders.map((order) => (
                         <div key={order._id} style={{ display: "flex", maxWidth: "50rem", border: "1px solid #ddd", padding: "1rem", marginBottom: "1rem", borderRadius: "8px" }}>
-                            <div style={{ width:"7rem",margin: "0 5rem"}}>
-                                <img src='/images/pizza.jpg' style={{ borderRadius:"20%",width: "100%",height:"100%" }} alt="" srcset="" />
-                                {/* {order.img} */}
+                            <div style={{ width:"7rem",height:"7rem",margin: "0 5rem"}}>
+                                <img src={`/${order.img}`} style={{ borderRadius:"20%",width: "100%",height:"100%",objectFit:"cover" }} alt="" srcset="" />
                             </div>
                             <div>
                                 <h1 style={{ fontSize: "1.2rem", margin: "0 0 0.5rem 0" }}>Name: {order.name}</h1>

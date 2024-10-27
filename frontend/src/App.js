@@ -8,35 +8,37 @@ import Cart from './pages/Cart';
 import Checkoutpage from './pages/Checkoutpage';
 import Profile from './pages/Profile';
 import OrderDetails from './pages/OrderDetails';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<Home/>,
+    element: <Home />,
   },
   {
     path: "/login",
-    element:<Login/>,
+    element: <Login />,
   },
   {
     path: "/signup",
-    element:<SignUp/>,
+    element: <SignUp />,
   },
   {
     path: "/cart",
-    element:<Cart/>,
+    element: <Cart />,
   },
   {
     path: "/cart/checkout",
-    element:<Checkoutpage/>,
+    element: <Checkoutpage />,
   },
   {
     path: "/profile",
-    element:<Profile/>,
+    element: <Profile />,
   },
   {
     path: "/order/:orderId",
-    element:<OrderDetails/>,
+    element: <OrderDetails />,
   },
   {
     path: "*",
@@ -47,8 +49,17 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router}/>
-    </>
+      <RouterProvider router={router} />
+      <ToastContainer position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false} />
+    </> 
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import { useNavigate } from 'react-router-dom'
 import './Cart.css'
+import { toast } from 'react-toastify'
 
 export default function Cart() {
   const [token, setToken] = useState(localStorage.getItem('authToken'))
@@ -29,7 +30,9 @@ export default function Cart() {
       setLoading(false)
 
     } catch (err) {
-      alert(err);
+      // alert(err);
+      // toast.error(err)
+      toast.error(err.message || "An error occurred");
     }
   }
 
@@ -46,8 +49,11 @@ export default function Cart() {
         throw new Error(errmsg);
       }
       handleCart();
+      toast.success("Cart Cleared")
     } catch (err) {
-      alert(err);
+      // alert(err);
+      // toast.error(err)
+      toast.error(err.message || "An error occurred");
     }
   }
 
@@ -64,8 +70,11 @@ export default function Cart() {
         throw new Error(errmsg);
       }
       handleCart();
+      toast.success("Item Removed")
     } catch (err) {
-      alert(err);
+      // alert(err);
+      // toast.error(err)
+      toast.error(err.message || "An error occurred");
     }
   }
 
@@ -75,7 +84,7 @@ export default function Cart() {
 
   useEffect(() => {
     const total = cartItems.reduce((acc, item) => acc + (item.price * item.qt), 0);
-    setTotalPrice(total);
+    setTotalPrice(parseFloat(total.toFixed(2)));
   }, [cartItems])
 
   return (
@@ -99,10 +108,10 @@ export default function Cart() {
                     <div className='d-flex align-items-center'>
                       <div className="p-2">
                         <img
-                          src="/images/pizza.jpg"
+                          src={item.img}
                           className="img-fluid rounded"
                           alt={item.name}
-                          style={{ width: "8rem", height: "6rem", marginLeft: "1.5rem", marginRight: "5rem" }}
+                          style={{ width: "8rem", height: "6rem", marginLeft: "1.5rem", marginRight: "5rem",objectFit:"cover" }}
                         />
                       </div>
                       <div className="card-body ms-2">

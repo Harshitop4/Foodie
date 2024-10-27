@@ -23,6 +23,11 @@ const OrderItemSchema=new Schema({
     }
 })
 
+OrderItemSchema.pre('save', function (next) {
+    this.price = parseFloat(this.price.toFixed(2));
+    next();
+  });
+
 const OrderItem=mongoose.model('OrderItem',OrderItemSchema);
 
 module.exports=OrderItem;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { toast } from 'react-toastify';
 
 export default function MyOrdersPage() {
     const [orders, setOrders] = useState([]);
@@ -24,8 +25,10 @@ export default function MyOrdersPage() {
             const data = await response.json();
             setOrders(data);
 
-        } catch (error) {
-            alert(error);
+        } catch (err) {
+            // alert(error);
+            // toast.error(error)
+            toast.error(err.message || "An error occurred");
         } finally {
             setLoading(false);
         }

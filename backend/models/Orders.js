@@ -30,6 +30,11 @@ const OrderSchema=new Schema({
     }
 })
 
+OrderSchema.pre('save', function (next) {
+    this.totalPrice = parseFloat(this.totalPrice.toFixed(2));
+    next();
+  });
+
 const Order=mongoose.model('Order',OrderSchema);
 
 module.exports=Order;
